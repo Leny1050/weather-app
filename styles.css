@@ -1,49 +1,62 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #0a0a0a; /* Сделаем фон чуть светлее */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(to bottom, #2980b9, #6dd5fa);
 }
 
-.weather-container {
+.weather-card {
     text-align: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95); /* Сделаем фон немного светлее */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(235, 3, 3, 0.281);
     max-width: 400px;
     width: 90%;
+    border: calc(0.08 * var(--m)) solid transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#121213, #121213), linear-gradient(#121213 50%, rgba(18, 18, 19, 0.6) 80%, rgba(18, 18, 19, 0)),  linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    background-origin: border-box;
+    background-clip: padding-box, border-box, border-box;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+    font-family: 'Space Grotesk';
 }
 
-input {
+.weather-card input {
     padding: 10px;
     font-size: 16px;
     margin: 10px 0;
     width: calc(100% - 20px);
-    border: 1px solid #ccc;
+    border: 1px solid #ff0000;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-button {
+.weather-card button {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
+    background-color: transparent;
+    color: #800303;
+    border: 1px solid #ffffff; /* Добавляем черный контур */
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #2980b9;
+.weather-card button:hover {
+    background-color: rgba(6, 149, 206, 0.2);
 }
 
-#weather-result {
+.weather-card #weather-result {
     margin-top: 20px;
     font-size: 18px;
     background-color: rgba(255, 255, 255, 0.8);
@@ -52,7 +65,43 @@ button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.error {
+.weather-card .error {
     color: red;
     margin-top: 10px;
+}
+
+.weather-card::before {
+    content: '';
+    background: linear-gradient(90deg, var(--orange), var(--yellow), var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    height: 30%;
+    width: 60%;
+    position: absolute;
+    bottom: -20%;
+    z-index: -5;
+    background-size: 200%;
+    animation: animate 2s infinite linear;
+    filter: blur(calc(0.8 * var(--m)));
+    border-radius: 10px;
+}
+
+@keyframes animate {
+    0% {background-position: 0}
+    100% {background-position: 200%}
+}
+
+:root {
+    --m: 4rem;
+    --red: #FF6565;
+    --pink: #FF64F9;
+    --purple: #6B5FFF;
+    --blue: #4D8AFF;
+    --green: #5BFF89;
+    --yellow: #FFEE55;
+    --orange: #FF6D1B;
+}
+
+@media screen and (max-width: 1000px) {
+    :root {
+        --m: 2rem;
+    }
 }
